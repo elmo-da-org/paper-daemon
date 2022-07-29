@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightning Monitor</title>
+
+    <link rel="stylesheet" href="css/coreui.css">
+    <link rel="stylesheet" href="css/coreui.min.css">
+    <script src="/js/bootstrap-notify.min"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js" integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.0/css/simple-line-icons.min.css" integrity="sha512-yxSQDoat2NPQ9U4mKdYra2YNenVsnRuGxVvyrirmrDKzwOdxKJVqkDEvQ17pL/PJ6B7n2n77Xm6d62bMjCBqCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="c-app flex-row align-items-center">
+    <div class="container">
+
+        <!-- Card Row -->
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card ">
+                    <div class="card-body text-center p-4">
+                            <h1 class="mb-3">📃 Login</h1>
+
+                            <form method="post" action="auth/password">
+                                <div class="input-group mb-2 mx-auto" style="max-width: 280px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="icon-user"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="text" name="username" placeholder="Username" required>
+                                </div>
+                                <div class="input-group mb-4 mx-auto" style="max-width: 280px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="icon-lock"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="password" name="password" placeholder="Password" required>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <button class="btn btn-primary px-4" type="submit">Login</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Row -->
+        <div class="row justify-content-center">
+            <div class="col-md-4 ">
+                <div class="alert alert-secondary text-center small" style="min-width: 280px;" role="alert">
+                    <h5 class="text-muted">
+                        <strong>📃Paper</strong>
+                    </h5>
+
+                    <div class="text-muted">
+                        <strong>Version:</strong> <%=version%> <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

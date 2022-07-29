@@ -1,0 +1,42 @@
+{
+  "name": "lightning-daemon",
+  "version": "0.0.0-canary",
+  "description": "A daemon that runs servers in the background ",
+  "main": "index.js",
+  "scripts": {
+    "dev-daemon": "node ./src/index.js",
+    "dev-webserver": "nodemon ./web/app.js",
+    "start": "node ./src/index.js & ./web/app.js"
+  },
+  "keywords": [
+    "lightning",
+    "daemon"
+  ],
+  "author": "Kasper Jasinski",
+  "license": "ISC",
+  "dependencies": {
+    "ansi-escape-sequences": "^6.2.1",
+    "arraybuffer-to-string": "^1.0.2",
+    "async": "^3.2.4",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "carrier": "^0.3.0",
+    "chalk": "^4.1.2",
+    "cors": "^2.8.5",
+    "dockerode": "^3.3.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "extendify": "^1.0.0",
+    "fs-extra": "^10.1.0",
+    "glob": "^8.0.3",
+    "klaw": "^4.0.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "node-os-utils": "^1.3.7",
+    "nodemon": "^2.0.19",
+    "os": "^0.1.2",
+    "socket.io": "^4.5.1",
+    "systeminformation": "^5.12.1"
+  }
+}

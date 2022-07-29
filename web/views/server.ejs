@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📃Paper Monitor - Server</title>
+
+    <link type="text/css" rel="stylesheet" href="../../css/coreui.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js" integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.0/css/simple-line-icons.min.css" integrity="sha512-yxSQDoat2NPQ9U4mKdYra2YNenVsnRuGxVvyrirmrDKzwOdxKJVqkDEvQ17pL/PJ6B7n2n77Xm6d62bMjCBqCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .console-content {
+            height: calc(100vh - 378px);
+            margin: 0;
+        }
+        .nui-height{
+            height: calc(100vh - 230px);
+        }
+        .console-input {
+            max-width: 24rem !important;
+            width: 100% !important;
+            margin-bottom: 1em;
+        }
+        #cmdHistoryDiv{
+            display: inline-block;
+        }
+        @media (max-width: 1200px) {
+            #cmdHistoryDiv{
+                text-align: center!important;
+            }
+        }
+        /* Custom Scrollbar colors for dark console */
+        .console-content::-webkit-scrollbar-track {
+            background-color: #1E252D;
+            border-right: 1px solid #1E252D;
+            border-left: 1px solid #1E252D;
+        }
+        .console-content::-webkit-scrollbar-thumb {
+            background-color: #565C62;
+        }
+        .console-content::-webkit-scrollbar-corner {
+            background: #1E252D;
+        }
+        .bg-dark {
+            background-color: #252E38 !important;
+        }
+        .command-history {
+            line-height: 2rem;
+            display: inline-block;
+        }
+        .command-history > button {
+            background-color: transparent !important;
+            color: #768192 !important;
+            border: 1px solid #768192;
+        }
+        .command-history > button:hover {
+            background-color: transparent !important;
+            color: rgb(183, 189, 199)!important;
+            border: 1px solid rgb(183, 189, 199);
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/sidebar.ejs'); %>
+    <!-- Begin Page Content -->
+
+    <div class="text-center">
+        <h3>📃 <%= uuid %>'s Console</h3>
+     </div>
+     <div class="card bg-dark">
+        <div class="card-body p-3" style="position: relative">
+            <pre id="console" class="thin-scroll console-content text-white "></pre>
+
+            <div id="autoScrollDiv">
+               <a id="autoScrollBtn" class="d-none" href="#"><span></span><span></span><span></span></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="module" src="../../js/sidebar.js"></script>
+    <script src="/js/bootstrap-notify.min"></script>
+
+    <script type="module">
+        import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+        const consoleElement = document.getElementById("console");
+        let thisUUID = '<%-uuid%>'
+        let utf8decoder = new TextDecoder(); // default 'utf-8' or 'utf8'
+
+        const scrollBottom = () => {
+            consoleElement.scrollTop = consoleElement.scrollHeight;
+        }
+        
+        // Live console
+        function createLiveFeed() {
+
+            let socket;
+
+            
+            socket = io('http://localhost:5250');
+            console.log('Attempting to connect to Socket.IO Server.')
+            
+            socket.on('error', (error) => {
+                console.dir(error)
+            });
+            socket.on('connect', () => {
+                console.log("Socket.IO Connected.");
+            });
+            socket.on('disconnect', () => {
+                console.log("Socket.IO Disonnected.");
+            });
+
+            socket.on('console', (uuid, message) => {
+                console.log(uuid, thisUUID)
+
+                let allow = false;
+
+                if (uuid == thisUUID) {
+                    allow = true;
+                } else if (uuid == 'global') {
+                    allow = true;
+                }
+
+                if (allow == true) {
+
+                    let _consoleData = consoleElement.innerHTML + message + '\n'
+                    consoleElement.innerHTML = _consoleData
+
+                    scrollBottom()
+                }
+            })
+        }
+
+        createLiveFeed();
+    </script>
+</body>
+</html>

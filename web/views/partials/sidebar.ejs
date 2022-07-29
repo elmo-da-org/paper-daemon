@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.0/css/simple-line-icons.min.css" integrity="sha512-yxSQDoat2NPQ9U4mKdYra2YNenVsnRuGxVvyrirmrDKzwOdxKJVqkDEvQ17pL/PJ6B7n2n77Xm6d62bMjCBqCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div id="sidebar" class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show">
+    <ul class="c-sidebar-nav ps">
+       <li class="c-sidebar-nav-title font-size-larger">
+           📃Paper v1.0.0
+       </li>
+       <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link" href="/servers">
+             <svg class="c-sidebar-nav-icon">
+                <use href="/img/coreui_icons.svg#cil-speedometer"></use>
+             </svg>
+             Servers
+          </a>
+       </li>
+
+       <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link" href="/settings">
+             <svg class="c-sidebar-nav-icon">
+                <use href="/img/coreui_icons.svg#cil-settings"></use>
+             </svg>
+             Settings
+          </a>
+       </li>
+
+       <!-- Sidebar footer -->
+       <li class="c-sidebar-nav-divider"></li>
+       <li class="c-sidebar-nav-title mt-auto">Host System Usage</li>
+       <li class="c-sidebar-nav-item px-3 d-compact-none c-d-minimized-none">
+          <div class="text-uppercase mb-1">
+             <small>
+             <b>CPU</b>
+             </small>
+          </div>
+          <div class="progress progress-xs">
+             <div class="progress-bar bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="hostusage-cpu-bar"></div>
+          </div>
+          <small class="text-muted" id="hostusage-cpu-text">loading...</small>
+       </li>
+       <li class="c-sidebar-nav-item px-3 d-compact-none c-d-minimized-none" style="padding-bottom: 2rem;">
+          <div class="text-uppercase mb-1">
+             <small>
+             <b>Memory</b>
+             </small>
+          </div>
+          <div class="progress progress-xs">
+             <div class="progress-bar bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="hostusage-memory-bar"></div>
+          </div>
+          <small class="text-muted" id="hostusage-memory-text">loading...</small>
+       </li>
+
+    </ul>
+</div>
+
+<!-- Actual Body -->
+<div class="c-wrapper c-fixed-components">
+<div class="c-body">
+    <main class="c-main thin-scroll" id="mainbody">
+        <div class="container-fluid">
+            <div class="fade-in">
